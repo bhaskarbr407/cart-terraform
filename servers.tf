@@ -12,6 +12,13 @@ resource "aws_instance" "instance" {
     Name = each.value["name"]
   }
 }
+resource "aws_route53_record" "records" {
+  zone_id = "Z05037461VOE1IVXJOFDE"
+  name    = "${each.value["name"]}-dev.rdevops.online"
+  type    = "A"
+  ttl     = 30
+  records = [aws_instance.instance[each.value["name"]].private_ip]
+}
 
 #resource "null_resource" "provisioner" {
 #  depends_on = [ aws_instance.instance ]
