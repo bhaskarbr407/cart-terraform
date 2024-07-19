@@ -13,6 +13,7 @@ resource "aws_instance" "instance" {
   }
 }
 resource "aws_route53_record" "records" {
+  for_each = var.components
   zone_id = "Z05037461VOE1IVXJOFDE"
   name    = "${each.value ["name"]}-dev.rdevops.online"
   type    = "A"
