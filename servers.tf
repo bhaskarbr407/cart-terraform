@@ -41,6 +41,4 @@ resource "aws_route53_record" "records" {
 #  }
 #}
 
-output "ami"{
-  value = data.aws_ami.centos.image_id
-}
+
